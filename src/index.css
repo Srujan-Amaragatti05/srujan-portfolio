@@ -1,0 +1,200 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* THEME VARIABLES */
+
+:root {
+  --bg-color: #0d0d0d;
+  --text-color: #f7f7f7;
+  --primary: #f2f2f2;
+  --secondary: #a3a3a3;
+  --accent: #5e6ad2;
+  --glass: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.08);
+
+  --font-display: 'Syne', sans-serif;
+  --font-sans: 'Space Grotesk', sans-serif;
+}
+
+html,
+#root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: var(--font-sans);
+  transition: background-color 0.8s cubic-bezier(0.16, 1, 0.3, 1), color 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6, .display-font {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* SCROLLBAR */
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-color);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: 8px;
+}
+
+.glass {
+  position: relative;
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-radius: 20px;
+  transition: all 0.4s ease;
+  overflow: hidden;
+}
+
+/* Dark Mode (Default) */
+.glass {
+  background: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.05),
+    rgba(255, 255, 255, 0.02)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow:
+    0 10px 40px rgba(0, 0, 0, 0.5),
+    inset 0 1px 1px rgba(255, 255, 255, 0.05);
+}
+
+/* Disable default cursor on desktop */
+@media (min-width: 768px) {
+  body {
+    cursor: none;
+  }
+
+  * {
+    cursor: none !important;
+  }
+}
+
+.hero-gradient {
+  background: linear-gradient(
+    120deg,
+    var(--primary),
+    var(--secondary),
+    var(--deep)
+  );
+  background-size: 300% 300%;
+}
+
+/* ===============================
+   VHS & CLI Effect 
+================================= */
+.vhs-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.vhs-effect::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%,
+    rgba(0, 255, 0, 0.05) 50% /* Slight green tint for CLI */
+  );
+  background-size: 100% 4px;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.vhs-text-glitch {
+  transition: all 0.2s ease;
+}
+
+.vhs-effect:hover .vhs-text-glitch {
+  animation: glitch-anim 0.2s linear infinite;
+  text-shadow: 2px 0 #0f0, -2px 0 #f00; /* Green and Red chromatic aberration */
+  color: #fff;
+}
+
+@keyframes glitch-anim {
+  0% { transform: translate(0) }
+  20% { transform: translate(-1px, 1px) }
+  40% { transform: translate(-1px, -1px) }
+  60% { transform: translate(1px, 1px) }
+  80% { transform: translate(1px, -1px) }
+  100% { transform: translate(0) }
+}
+
+/* ===============================
+   Marquee Effect 
+================================= */
+.marquee-container {
+  display: flex;
+  overflow: hidden;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  padding: 2rem 0;
+}
+
+.marquee-container::before,
+.marquee-container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 15vw;
+  height: 100%;
+  z-index: 20;
+  pointer-events: none;
+}
+
+.marquee-container::before {
+  left: 0;
+  background: linear-gradient(to right, var(--bg-color), transparent);
+}
+
+.marquee-container::after {
+  right: 0;
+  background: linear-gradient(to left, var(--bg-color), transparent);
+}
+
+.marquee-track {
+  display: flex;
+  gap: 1.5rem;
+  padding-left: 1.5rem;
+  animation: scroll-left 40s linear infinite;
+  width: max-content;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes scroll-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(calc(-50% - 0.75rem)); }
+}

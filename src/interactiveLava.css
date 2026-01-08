@@ -1,0 +1,149 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.gradient-bg {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  overflow: hidden;
+  background: #000000;
+  top: 0;
+  left: 0;
+  z-index: -10;
+  pointer-events: none;
+}
+
+.gradients-container {
+  /* Using standard CSS blur to create the mesh gradient effect efficiently */
+  filter: blur(90px);
+}
+
+@keyframes moveInCircle {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes moveVertical {
+  0% {
+    transform: translateY(-50%);
+  }
+  50% {
+    transform: translateY(50%);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
+}
+
+@keyframes moveHorizontal {
+  0% {
+    transform: translateX(-50%) translateY(-10%);
+  }
+  50% {
+    transform: translateX(50%) translateY(10%);
+  }
+  100% {
+    transform: translateX(-50%) translateY(-10%);
+  }
+}
+
+/* Background gradient blobs to mix with the cursor */
+
+.g1 {
+  position: absolute;
+  /* Deep Red / Crimson */
+  background: radial-gradient(circle at center, rgba(160, 10, 0, 0.8) 0, rgba(160, 10, 0, 0) 50%) no-repeat;
+  mix-blend-mode: screen;
+  width: 100vw;
+  height: 100vw;
+  top: calc(50% - 20vw);
+  left: calc(50% - 50vw);
+  transform-origin: center center;
+  animation: moveVertical 12s ease-in-out infinite;
+  opacity: 1;
+  will-change: transform;
+}
+
+.g2 {
+  position: absolute;
+  /* Fiery Orange */
+  background: radial-gradient(circle at center, rgba(255, 70, 0, 0.8) 0, rgba(255, 70, 0, 0) 50%) no-repeat;
+  mix-blend-mode: screen;
+  width: 110vw;
+  height: 110vw;
+  top: calc(50% - 30vw);
+  left: calc(50% - 50vw);
+  transform-origin: calc(50% - 20vw);
+  animation: moveInCircle 18s reverse infinite;
+  opacity: 0.9;
+  will-change: transform;
+}
+
+.g3 {
+  position: absolute;
+  /* Bright Orange / Yellowish */
+  background: radial-gradient(circle at center, rgba(255, 120, 0, 0.8) 0, rgba(255, 120, 0, 0) 50%) no-repeat;
+  mix-blend-mode: screen;
+  width: 120vw;
+  height: 120vw;
+  top: calc(50% - 10vw);
+  left: calc(50% - 70vw);
+  transform-origin: calc(50% + 10vw);
+  animation: moveInCircle 20s linear infinite;
+  opacity: 1;
+  will-change: transform;
+}
+
+.g4 {
+  position: absolute;
+  /* Deep Blood Red */
+  background: radial-gradient(circle at center, rgba(120, 0, 0, 0.9) 0, rgba(120, 0, 0, 0) 50%) no-repeat;
+  mix-blend-mode: screen;
+  width: 90vw;
+  height: 90vw;
+  top: calc(50% - 40vw);
+  left: calc(50% - 30vw);
+  transform-origin: calc(50% - 10vw);
+  animation: moveHorizontal 25s ease-in-out infinite;
+  opacity: 0.8;
+  will-change: transform;
+}
+
+.g5 {
+  position: absolute;
+  /* Pure Vibrant Orange */
+  background: radial-gradient(circle at center, rgba(255, 90, 0, 0.8) 0, rgba(255, 90, 0, 0) 50%) no-repeat;
+  mix-blend-mode: screen;
+  width: 130vw;
+  height: 130vw;
+  top: calc(50% - 10vw);
+  left: calc(50% - 65vw);
+  transform-origin: calc(50% - 40vw) calc(50% + 20vw);
+  animation: moveInCircle 15s ease-in-out infinite;
+  opacity: 0.9;
+  will-change: transform;
+}
+
+.interactive-bubble {
+  /* Bright fiery interactive glow */
+  background: radial-gradient(circle at center, rgba(255, 150, 50, 0.4) 0%, rgba(255, 60, 0, 0.1) 40%, rgba(0,0,0,0) 70%);
+  width: 70vw;
+  height: 70vw;
+  min-width: 600px;
+  min-height: 600px;
+  top: -35vw;
+  left: -35vw;
+  position: absolute;
+  mix-blend-mode: screen;
+  transform-origin: center center;
+  will-change: transform;
+}
